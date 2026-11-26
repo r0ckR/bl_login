@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>betterloader</title>
+<script>/* the app is only reachable after signing in: send unknown paths (e.g. a bookmarked .../app/) to the sign-in page.
+   Works at a domain root and under a sub-path (GitHub Pages: /<repo>/). */
+(function () {
+  var p = location.pathname, i = p.indexOf("/app/"), base;
+  if (i >= 0) base = p.slice(0, i + 1);
+  else if (/\.github\.io$/.test(location.hostname)) base = "/" + (p.split("/")[1] || "") + "/";
+  else base = "/";
+  location.replace(location.origin + base.replace(/\/+/g, "/") + (i >= 0 ? "?next=app" : ""));
+})();</script>

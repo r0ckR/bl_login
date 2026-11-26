@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="theme-color" content="#14171c">
+  <title>betterloader · sign in</title>
+  <style>
+    :root { color-scheme: dark; --bg: #14171c; --panel: #1e2126; --line: #2f3134; --text: #e8eaed; --dim: #9aa0a6; --accent: #c8102e; --err: #ff6b6b; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 360px; margin: 12vh auto 0; padding: 0 16px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+    h1 { font-size: 20px; margin: 0 0 4px; } p { margin: 0 0 16px; color: var(--dim); }
+    label { display: block; font-size: 13px; color: var(--dim); margin: 12px 0 4px; }
+    input { box-sizing: border-box; width: 100%; padding: 9px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; }
+    button { margin-top: 18px; width: 100%; padding: 10px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+    button.secondary { background: var(--line); }
+    button:disabled { opacity: .6; cursor: default; }
+    #msg { min-height: 1.4em; margin-top: 14px; color: var(--err); font-size: 14px; }
+    #msg.ok { color: var(--dim); }
+    progress { width: 100%; margin-top: 12px; accent-color: var(--accent); }
+    .row { display: flex; gap: 8px; } .row button { flex: 1; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="card">
+      <h1>betterloader</h1>
+      <p>Sign in with the account you were given.</p>
+      <form id="login" hidden>
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button id="go" type="submit">Sign in</button>
+      </form>
+      <div id="signedin" hidden>
+        <p id="who"></p>
+        <button id="open" type="button">Open betterloader</button>
+        <div class="row">
+          <button id="install" class="secondary" type="button" hidden>Install app</button>
+          <button id="out" class="secondary" type="button">Sign out</button>
+        </div>
+      </div>
+      <progress id="bar" max="1" value="0" hidden></progress>
+      <div id="msg" role="status"></div>
+    </div>
+  </main>
+  <script src="config.js"></script>
+  <script type="module" src="gate.js"></script>
+</body>
+</html>
